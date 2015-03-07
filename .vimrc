@@ -21,7 +21,7 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'itchyny/lightline.vim'
 
 " Emmet for quick markup
-
+Plugin 'mattn/emmet-vim'
 
 " End of Vundle plugins
 call vundle#end()
