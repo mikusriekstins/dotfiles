@@ -1,3 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/Users/mikus/Sites/latvija/assets/css'
+let g:netrw_dirhist_2='/Users/mikus/Sites/mikus-me'
+let g:netrw_dirhist_3='/Users/mikus/Sites/mikus-me/site'
+let g:netrw_dirhist_4='/Users/mikus/Sites/mikus-me'
+let g:netrw_dirhist_5='/Users/mikus/Sites/mikus-me/site'
+let g:netrw_dirhist_6='/Users/mikus/Sites/mikus-me/site/templates'

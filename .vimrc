@@ -96,3 +96,8 @@ set autoindent
 " Line break
 set wrap linebreak nolist
 
+" Relative line numbers
+set rnu
+
+" Font for MacVim
+set guifont=Input:h20
