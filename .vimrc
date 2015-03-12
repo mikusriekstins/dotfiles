@@ -31,8 +31,8 @@ filetype plugin indent on
 
 " Enable syntax highlighting on
 syntax enable
-
 " Line numbers
+
 set number
 
 " Always show status line
@@ -101,3 +101,6 @@ set rnu
 
 " Font for MacVim
 set guifont=Input:h20
+
+" Display extra whitespace
+set list listchars=tab:»·,trail:·,nbsp:·
