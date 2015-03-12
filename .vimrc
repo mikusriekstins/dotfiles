@@ -21,7 +21,7 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'itchyny/lightline.vim'
 
 " Emmet for quick markup
-
+Plugin 'mattn/emmet-vim'
 
 " End of Vundle plugins
 call vundle#end()
@@ -34,6 +34,7 @@ syntax enable
 
 " Line numbers
 set number
+set numberwidth=5
 
 " Always show status line
 set laststatus=2
@@ -96,3 +97,11 @@ set autoindent
 " Line break
 set wrap linebreak nolist
 
+" Relative line numbers
+set rnu
+
+" Font for MacVim
+set guifont=Input:h20
+
+" Display extra whitespace
+set list listchars=tab:»·,trail:·,nbsp:·

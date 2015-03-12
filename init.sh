@@ -5,7 +5,7 @@ dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir
-files="bashrc bash_promt bash_profile aliases exports functions vim vimrc"
+files="bashrc bash_prompt bash_profile aliases exports functions vim vimrc"
 
 ##########
 
