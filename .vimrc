@@ -31,9 +31,10 @@ filetype plugin indent on
 
 " Enable syntax highlighting on
 syntax enable
-" Line numbers
 
+" Line numbers
 set number
+set numberwidth=5
 
 " Always show status line
 set laststatus=2
