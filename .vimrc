@@ -23,6 +23,9 @@ Plugin 'itchyny/lightline.vim'
 " Emmet for quick markup
 Plugin 'mattn/emmet-vim'
 
+" JSHint
+Plugin 'walm/jshint.vim'
+
 " End of Vundle plugins
 call vundle#end()
 
@@ -102,6 +105,3 @@ set rnu
 
 " Font for MacVim
 set guifont=Input:h20
-
-" Display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
