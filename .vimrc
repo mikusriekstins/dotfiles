@@ -23,8 +23,11 @@ Plugin 'itchyny/lightline.vim'
 " Emmet for quick markup
 Plugin 'mattn/emmet-vim'
 
+" Jade syntax
+Plugin 'digitaltoad/vim-jade'
+
 " JSHint
-Plugin 'walm/jshint.vim'
+Plugin 'Shutnik/jshint2.vim'
 
 " End of Vundle plugins
 call vundle#end()
