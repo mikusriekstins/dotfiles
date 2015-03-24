@@ -14,9 +14,6 @@ call vundle#begin()
 " Let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" Plug in jellybeans colorscheme and change to it
-Plugin 'nanotech/jellybeans.vim'
-
 " Statusline
 Plugin 'itchyny/lightline.vim'
 
@@ -46,7 +43,7 @@ set numberwidth=5
 set laststatus=2
 
 " Set colorscheme
-colorscheme jellybeans
+colorscheme molokai
 
 " Size of tabs
 set tabstop=2
@@ -108,3 +105,7 @@ set rnu
 
 " Font for MacVim
 set guifont=Input:h20
+
+" New line without Insert mode Enter/Shift+Enter
+nmap <S-Enter> O<Esc>j
+nmap <CR> o<Esc>k
