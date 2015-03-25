@@ -26,6 +26,9 @@ Plugin 'digitaltoad/vim-jade'
 " JSHint
 Plugin 'Shutnik/jshint2.vim'
 
+" Colorscheme
+Plugin 'shawncplus/skittles_berry'
+
 " End of Vundle plugins
 call vundle#end()
 
