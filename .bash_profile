@@ -1,14 +1,13 @@
-# Load ~/.extra, ~/.bash_prompt, ~/.exports, ~/.aliases and ~/.functions
-# ~/.extra can be used for settings you don’t want to commit
-for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
-	[ -r "$file" ] && source "$file"
-done
-unset file
+# Source bash prompt from .bash_prompt
+[ -r ".bash_prompt" ] && source .bash_prompt
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob
+# Make vim the default editor
+export EDITOR="/usr/local/Cellar/vim/7.4.488/bin/vim"
 
-# Prefer US English and use UTF-8
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US"
+# Alias mvim for MacVim
+alias mvim="/Applications/MacVim.app/contents/MacOS/MacVim"
 
+# More useful LS
+alias la="ls -a" 
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad

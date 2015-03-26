@@ -5,7 +5,7 @@ dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir
-files="bashrc bash_prompt bash_profile aliases exports functions vim vimrc"
+files="bashrc bash_prompt bash_profile vim vimrc"
 
 ##########
 
@@ -26,13 +26,3 @@ for file in $files; do
   echo "Creating symlink to $file in home directory."
   ln -s $dir/.$file ~/.$file
 done
-
-# Install Vundle and the rest of the plugins from .vimrc
-if [ ! -d ~/.vim/bundle/Vundle.vim ]; then 
-	echo "Installing Vundle.vim"
-	git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-fi
-
-echo "Install vim plugins"
-vim +PluginInstall
-echo "...done"

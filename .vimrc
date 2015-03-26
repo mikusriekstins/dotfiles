@@ -1,36 +1,14 @@
 " Made & Used by: Mikus Riekstins (@mikusriekstins)
 " Last change:    2015 Feb 23
 
+" Enable Pathogen
+execute pathogen#infect()
+
 " Use Vim instead of Vi settings
 set nocompatible
 
 " Make backspace behave normaly
 set backspace=indent,eol,start
-
-" Set runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" Statusline
-Plugin 'itchyny/lightline.vim'
-
-" Emmet for quick markup
-Plugin 'mattn/emmet-vim'
-
-" Jade syntax
-Plugin 'digitaltoad/vim-jade'
-
-" JSHint
-Plugin 'Shutnik/jshint2.vim'
-
-" Colorscheme
-Plugin 'shawncplus/skittles_berry'
-
-" End of Vundle plugins
-call vundle#end()
 
 " Enable file type detection and language-dependent intenting
 filetype plugin indent on
