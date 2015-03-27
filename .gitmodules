@@ -1,3 +1,6 @@
 [submodule ".vim/bundle/ctrlp.git"]
 	path = .vim/bundle/ctrlp.git
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule ".vim/bundle/lightline.git"]
+	path = .vim/bundle/lightline.git
+	url = https://github.com/itchyny/lightline.vim.git
