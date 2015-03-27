@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/lightline.git"]
 	path = .vim/bundle/lightline.git
 	url = https://github.com/itchyny/lightline.vim.git
+[submodule ".vim/bundle/skittles_berry.git"]
+	path = .vim/bundle/skittles_berry.git
+	url = https://github.com/shawncplus/skittles_berry.git

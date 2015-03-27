@@ -24,7 +24,7 @@ set numberwidth=5
 set laststatus=2
 
 " Set colorscheme
-colorscheme molokai
+colorscheme skittles_berry
 
 " Size of tabs
 set tabstop=2
