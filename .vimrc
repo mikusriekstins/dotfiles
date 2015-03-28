@@ -67,6 +67,10 @@ let mapleader=","               " Change the leader to ','
 nmap <S-Enter> O<Esc>j
 nmap <CR> o<Esc>k
 
+" Buffer movement with listing
+nnoremap <C-n> :bnext<CR>:ls<CR>
+nnoremap <C-p> :bprevious<CR>:ls<CR>
+
 " ------------------------------------------------------------
 " Plugins
 " ------------------------------------------------------------
