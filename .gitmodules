@@ -4,12 +4,12 @@
 [submodule ".vim/bundle/lightline.git"]
 	path = .vim/bundle/lightline.git
 	url = https://github.com/itchyny/lightline.vim.git
-[submodule ".vim/bundle/skittles_berry.git"]
-	path = .vim/bundle/skittles_berry.git
-	url = https://github.com/shawncplus/skittles_berry.git
 [submodule ".vim/bundle/surround.git"]
 	path = .vim/bundle/surround.git
 	url = https://github.com/tpope/vim-surround.git
 [submodule ".vim/bundle/ultisnips.git"]
 	path = .vim/bundle/ultisnips.git
 	url = https://github.com/SirVer/ultisnips.git
+[submodule ".vim/bundle/solarized.git"]
+	path = .vim/bundle/solarized.git
+	url = git://github.com/altercation/vim-colors-solarized.git

@@ -1,50 +1,59 @@
-" Made & Used by: Mikus Riekstins (@mikusriekstins)
-" Last change:    2015 Feb 23
 
-" Enable Pathogen
+" Author: Mikus Riekstins (mikus.riekstins@gmail.com)
+" Last update 2015
+
+" ------------------------------------------------------------
+" General
+" ------------------------------------------------------------
+
 execute pathogen#infect()
+set nocompatible                " Use Vim instead of Vi setting
+set backspace=indent,eol,start  " Make backspace behave normaly
+filetype plugin indent on       " Enable file type detection
+syntax enable                   " Enable syntax highlighting on
+set nobackup                    " Disable use of backups
+set nowritebackup               " Disable writing to backups
+set noswapfile                  " Disable swap files
+set hidden                      " Enable switching buffers w/o saving
 
-" Use Vim instead of Vi settings
-set nocompatible
+" ------------------------------------------------------------
+" Movement
+" ------------------------------------------------------------
 
-" Make backspace behave normaly
-set backspace=indent,eol,start
+set scrolloff=3                 " Cursor offset for scrolling
 
-" Enable file type detection and language-dependent intenting
-filetype plugin indent on
+" ------------------------------------------------------------
+" User Interface
+" ------------------------------------------------------------
 
-" Enable syntax highlighting on
-syntax enable
+set number                      " Line numbers
+set numberwidth=4               " Make space for at least 4
+set laststatus=2                " Always show status line
+set background=dark             " Dark variation of colorscheme
+colorscheme solarized           " Set colorscheme
+set splitbelow                  " H-Split to bottom
+set splitright                  " V-Split to right
+set cursorline                  " Highlighted current line
+set guifont=Input:h20           " Font for MacVim
+set rnu                         " Relative line numbers
+set cc=80                       " Color column 80
 
-" Line numbers
-set number
-set numberwidth=5
+" ------------------------------------------------------------
+" Formating
+" ------------------------------------------------------------
 
-" Always show status line
-set laststatus=2
+set tabstop=2                   " Size of tabs
+set shiftwidth=2                " Size of an indent
+set softtabstop=2               " Soft tab size
+set smarttab                    " Tab insterts indents for new line
+set expandtab                   " Always use spaces instead of tab
+set nowrap                      " Do not wrap lines
+set textwidth=0                 " Do not limit text width
+set autoindent                  " Enable autoindent
 
-" Set colorscheme
-colorscheme skittles_berry
-
-" Size of tabs
-set tabstop=2
-
-" Size of an indent
-set shiftwidth=2
-
-" Soft tab size
-set softtabstop=2
-
-" Tab insterts indents instead of tabs on new line
-set smarttab
-
-" Always use spaces instead of tab
-set expandtab
-
-" Disable backup & swap files
-set nobackup
-set nowritebackup
-set noswapfile
+" ------------------------------------------------------------
+" Mappings
+" ------------------------------------------------------------
 
 " Simpler split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -52,41 +61,13 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" More natural split opening on right and bottom
-set splitbelow
-set splitright
-
-" Hide mode status (due to statusline plugin)
-set noshowmode
-
-" Highlighted current line
-set cursorline
-
-" Cursor offset for scrolling
-set scrolloff=3
-
-" Change the leader to ','
-let mapleader=","
-
-" Enable for buffers to be left unsaved when
-" onpening/switching buffers
-set hidden
-
-" Do not wrap lines
-" set nowrap
-
-" Enable autoindent
-set autoindent
-
-" Line break
-set wrap linebreak nolist
-
-" Relative line numbers
-set rnu
-
-" Font for MacVim
-set guifont=Input:h20
+let mapleader=","               " Change the leader to ','
 
 " New line without Insert mode Enter/Shift+Enter
 nmap <S-Enter> O<Esc>j
 nmap <CR> o<Esc>k
+
+" ------------------------------------------------------------
+" Plugins
+" ------------------------------------------------------------
+
