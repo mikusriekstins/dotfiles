@@ -3,10 +3,24 @@
 " Last update 2015
 
 " ------------------------------------------------------------
+" Plugins
+" ------------------------------------------------------------
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'kien/ctrlp.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'SirVer/ultisnips'
+Plugin 'itchyny/lightline.vim'
+Plugin 'tpope/vim-surround'
+
+call vundle#end()
+
+" ------------------------------------------------------------
 " General
 " ------------------------------------------------------------
 
-execute pathogen#infect()
 set nocompatible                " Use Vim instead of Vi setting
 set backspace=indent,eol,start  " Make backspace behave normaly
 filetype plugin indent on       " Enable file type detection
@@ -19,6 +33,7 @@ set hidden                      " Enable switching buffers w/o saving
 " ------------------------------------------------------------
 " Movement
 " ------------------------------------------------------------
+
 
 set scrolloff=3                 " Cursor offset for scrolling
 
@@ -70,8 +85,4 @@ nmap <CR> o<Esc>k
 " Buffer movement with listing
 nnoremap <C-n> :bnext<CR>:ls<CR>
 nnoremap <C-p> :bprevious<CR>:ls<CR>
-
-" ------------------------------------------------------------
-" Plugins
-" ------------------------------------------------------------
 
