@@ -29,6 +29,7 @@ set nobackup                    " Disable use of backups
 set nowritebackup               " Disable writing to backups
 set noswapfile                  " Disable swap files
 set hidden                      " Enable switching buffers w/o saving
+set t_Co=256                    " Set 256 colors
 
 " ------------------------------------------------------------
 " Movement
