@@ -14,8 +14,15 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'SirVer/ultisnips'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-surround'
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()
+
+" CtrlP ignore files and folders
+let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|DS_Store\|git'
+
+" Emmet shortcut remap
+let g:user_emmet_leader_key='<C-Z>'
 
 " ------------------------------------------------------------
 " General
@@ -80,10 +87,12 @@ nnoremap <C-H> <C-W><C-H>
 let mapleader=","               " Change the leader to ','
 
 " New line without Insert mode Enter/Shift+Enter
-nmap <S-Enter> O<Esc>j
-nmap <CR> o<Esc>k
+nmap <leader>O O<Esc>j
+nmap <leader>o o<Esc>k
 
 " Buffer movement with listing
-nnoremap <C-n> :bnext<CR>:ls<CR>
-nnoremap <C-p> :bprevious<CR>:ls<CR>
+nnoremap <leader>n :bnext<CR>:ls<CR>
+nnoremap <leader>p :bprevious<CR>:ls<CR>
+
+nnoremap <leader>rc :vsp ~/.vimrc<CR><C-L>
 

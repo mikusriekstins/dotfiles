@@ -4,6 +4,11 @@
 # Make vim the default editor
 export EDITOR="/usr/local/Cellar/vim/7.4.488/bin/vim"
 
+# Set UTF8
+# Setting for the new UTF-8 terminal support
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8kk
+
 # More useful LS
 alias la="ls -a" 
 export CLICOLOR=1
