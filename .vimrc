@@ -9,6 +9,7 @@
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'SirVer/ultisnips'
@@ -37,6 +38,7 @@ set nowritebackup               " Disable writing to backups
 set noswapfile                  " Disable swap files
 set hidden                      " Enable switching buffers w/o saving
 set t_Co=256                    " Set 256 colors
+set clipboard+=unnamed          " Use system clipboard *
 
 " ------------------------------------------------------------
 " Movement
@@ -60,6 +62,13 @@ set cursorline                  " Highlighted current line
 set guifont=Input:h20           " Font for MacVim
 set rnu                         " Relative line numbers
 set cc=80                       " Color column 80
+set list                        " Show hidden characters
+set listchars=eol:¬,trail:•     " Set hidden characters
+hi NonText ctermfg=23 guifg=#005f5f
+
+" Save view (for folds) to .vimrc on buffer switching
+autocmd BufWinLeave .vimrc mkview
+autocmd BufWinEnter .vimrc silent loadview 
 
 " ------------------------------------------------------------
 " Formating
