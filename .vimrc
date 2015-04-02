@@ -16,6 +16,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'mattn/emmet-vim'
+Plugin 'othree/html5.vim'
 
 call vundle#end()
 
