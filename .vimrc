@@ -107,3 +107,5 @@ nnoremap <leader>p :bprevious<CR>:ls<CR>
 
 nnoremap <leader>rc :vsp ~/.vimrc<CR><C-L>
 
+" Make shortcut
+nnoremap <leader>m :make<CR>
