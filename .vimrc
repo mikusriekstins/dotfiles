@@ -17,6 +17,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'mattn/emmet-vim'
 Plugin 'othree/html5.vim'
+Plugin 'kchmck/vim-coffee-script'
 
 call vundle#end()
 

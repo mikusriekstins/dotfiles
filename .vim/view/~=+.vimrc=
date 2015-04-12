@@ -119,12 +119,12 @@ setlocal nowinfixwidth
 setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 19 - ((18 * winheight(0) + 19) / 39)
+let s:l = 20 - ((14 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-19
-normal! 025|
+20
+normal! 033|
 lcd ~/Sites/om-intro
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
