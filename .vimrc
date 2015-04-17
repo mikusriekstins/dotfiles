@@ -109,3 +109,6 @@ nnoremap <leader>rc :vsp ~/.vimrc<CR><C-L>
 
 " Make shortcut
 nnoremap <leader>m :make<CR>
+
+" Quick silent run through Autoprefixer
+nnoremap <leader>ap :silent !autoprefixer %<CR>:e<CR>
