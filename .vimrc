@@ -17,7 +17,6 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'mattn/emmet-vim'
 Plugin 'othree/html5.vim'
-Plugin 'kchmck/vim-coffee-script'
 
 call vundle#end()
 
@@ -40,7 +39,6 @@ set nowritebackup               " Disable writing to backups
 set noswapfile                  " Disable swap files
 set hidden                      " Enable switching buffers w/o saving
 set t_Co=256                    " Set 256 colors
-set clipboard+=unnamed          " Use system clipboard *
 
 " ------------------------------------------------------------
 " Movement
@@ -61,12 +59,11 @@ colorscheme solarized           " Set colorscheme
 set splitbelow                  " H-Split to bottom
 set splitright                  " V-Split to right
 set cursorline                  " Highlighted current line
-set guifont=Office\ Code\ Pro:h20           " Font for MacVim
+set guifont=Source\ Code\ Pro:h18           " Font for MacVim
 set rnu                         " Relative line numbers
 set cc=80                       " Color column 80
 set list                        " Show hidden characters
-set listchars=eol:¬,trail:•     " Set hidden characters
-hi NonText ctermfg=23 guifg=#005f5f
+set listchars=trail:•           " Set hidden characters
 
 " Save view (for folds) to .vimrc on buffer switching
 autocmd BufWinLeave .vimrc mkview
