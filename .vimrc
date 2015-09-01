@@ -59,7 +59,7 @@ colorscheme solarized           " Set colorscheme
 set splitbelow                  " H-Split to bottom
 set splitright                  " V-Split to right
 set cursorline                  " Highlighted current line
-set guifont=Source\ Code\ Pro:h18           " Font for MacVim
+set guifont=Input:h18           " Font for MacVim
 set rnu                         " Relative line numbers
 set cc=80                       " Color column 80
 set list                        " Show hidden characters
@@ -102,10 +102,8 @@ nmap <leader>o o<Esc>k
 nnoremap <leader>n :bnext<CR>:ls<CR>
 nnoremap <leader>p :bprevious<CR>:ls<CR>
 
+" Edit vimrc
 nnoremap <leader>rc :vsp ~/.vimrc<CR><C-L>
-
-" Make shortcut
-nnoremap <leader>m :make<CR>
 
 " Quick silent run through Autoprefixer
 nnoremap <leader>ap :silent !autoprefixer %<CR>:e<CR>

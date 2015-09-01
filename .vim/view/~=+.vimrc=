@@ -15,11 +15,8 @@ nnoremap <buffer> <silent> ]] m':call search('^\s*fu\%[nction]\>', "W")
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
-setlocal backupcopy=
 setlocal balloonexpr=
 setlocal nobinary
-setlocal nobreakindent
-setlocal breakindentopt=
 setlocal bufhidden=
 setlocal buflisted
 setlocal buftype=
@@ -62,8 +59,8 @@ setlocal formatexpr=
 setlocal formatoptions=tcq
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
+setlocal iminsert=0
+setlocal imsearch=0
 setlocal include=
 setlocal includeexpr=
 setlocal indentexpr=GetVimIndent()
@@ -119,12 +116,12 @@ setlocal nowinfixwidth
 setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 21 - ((13 * winheight(0) + 22) / 45)
+let s:l = 105 - ((36 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-21
-normal! 0
+105
+normal! 012|
 lcd ~/Sites/om-intro
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
