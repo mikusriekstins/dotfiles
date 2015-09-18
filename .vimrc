@@ -107,3 +107,9 @@ nnoremap <leader>rc :vsp ~/.vimrc<CR><C-L>
 
 " Quick silent run through Autoprefixer
 nnoremap <leader>ap :silent !autoprefixer %<CR>:e<CR>
+
+" Ignore arrows
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
