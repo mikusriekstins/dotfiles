@@ -13,3 +13,5 @@ export LC_ALL=en_US.UTF-8
 alias la="ls -a" 
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
+
+. ~/Git/z/z.sh
