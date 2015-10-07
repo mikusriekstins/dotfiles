@@ -14,4 +14,12 @@ alias la="ls -a"
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
+# Gzip size
+function gz() {
+  echo "orig size    (bytes): "
+  cat "$1" | wc -c
+  echo "gzipped size (bytes): "
+  gzip -c "$1" | wc -c
+}
+
 . ~/Git/z/z.sh
