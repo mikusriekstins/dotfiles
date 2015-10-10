@@ -18,6 +18,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'mattn/emmet-vim'
 Plugin 'othree/html5.vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'editorconfig/editorconfig-vim'
 
 call vundle#end()
 
