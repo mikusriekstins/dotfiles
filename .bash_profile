@@ -10,7 +10,7 @@ export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # More useful LS
-alias la="ls -a" 
+alias la="ls -a"
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
@@ -21,5 +21,7 @@ function gz() {
   echo "gzipped size (bytes): "
   gzip -c "$1" | wc -c
 }
+
+alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 . ~/Git/z/z.sh
