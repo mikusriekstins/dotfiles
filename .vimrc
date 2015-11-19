@@ -28,6 +28,9 @@ let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|DS_Store\|git'
 " Emmet shortcut remap
 let g:user_emmet_leader_key='<C-Z>'
 
+" Use W3 to validate HTML
+let g:syntastic_html_checkers = ['w3']
+
 " ------------------------------------------------------------
 " General
 " ------------------------------------------------------------
@@ -61,7 +64,8 @@ colorscheme solarized           " Set colorscheme
 set splitbelow                  " H-Split to bottom
 set splitright                  " V-Split to right
 set cursorline                  " Highlighted current line
-set guifont=CamingoCode:h18     " Font for MacVim
+set guifont=Courier\ Prime\ Code:h18     " Font for MacVim
+set linespace=8                 " Set line height
 set rnu                         " Relative line numbers
 set cc=80                       " Color column 80
 set list                        " Show hidden characters
