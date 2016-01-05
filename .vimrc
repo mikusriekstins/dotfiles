@@ -64,7 +64,7 @@ colorscheme solarized           " Set colorscheme
 set splitbelow                  " H-Split to bottom
 set splitright                  " V-Split to right
 set cursorline                  " Highlighted current line
-set guifont=Courier\ Prime\ Code:h18     " Font for MacVim
+set guifont=Fira\ Mono:h18     " Font for MacVim
 set linespace=8                 " Set line height
 set rnu                         " Relative line numbers
 set cc=80                       " Color column 80

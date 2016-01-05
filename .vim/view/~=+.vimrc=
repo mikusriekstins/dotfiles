@@ -48,6 +48,7 @@ setlocal expandtab
 if &filetype != 'vim'
 setlocal filetype=vim
 endif
+setlocal fixendofline
 setlocal foldcolumn=0
 setlocal foldenable
 setlocal foldexpr=0
@@ -109,6 +110,7 @@ if &syntax != 'vim'
 setlocal syntax=vim
 endif
 setlocal tabstop=2
+setlocal tagcase=
 setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
@@ -119,13 +121,12 @@ setlocal nowinfixwidth
 setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 68 - ((25 * winheight(0) + 21) / 42)
+let s:l = 67 - ((8 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-68
-normal! 015|
-lcd ~/Sites/dnb
+67
+normal! 018|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :
