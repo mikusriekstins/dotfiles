@@ -57,23 +57,19 @@ set scrolloff=3                 " Cursor offset for scrolling
 " ------------------------------------------------------------
 
 set number                      " Line numbers
-set numberwidth=4               " Make space for at least 4
+set numberwidth=5               " Make space for at least 4
 set laststatus=2                " Always show status line
 set background=dark             " Dark variation of colorscheme
 colorscheme solarized           " Set colorscheme
 set splitbelow                  " H-Split to bottom
 set splitright                  " V-Split to right
 set cursorline                  " Highlighted current line
-set guifont=Fira\ Mono:h18     " Font for MacVim
+set guifont=Fira\ Mono:h18      " Font for MacVim
 set linespace=8                 " Set line height
 set rnu                         " Relative line numbers
 set cc=80                       " Color column 80
 set list                        " Show hidden characters
 set listchars=trail:•           " Set hidden characters
-
-" Save view (for folds) to .vimrc on buffer switching
-autocmd BufWinLeave .vimrc mkview
-autocmd BufWinEnter .vimrc silent loadview 
 
 " ------------------------------------------------------------
 " Formating
@@ -93,10 +89,10 @@ set autoindent                  " Enable autoindent
 " ------------------------------------------------------------
 
 " Simpler split navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
 
 let mapleader=","               " Change the leader to ','
 
@@ -104,18 +100,20 @@ let mapleader=","               " Change the leader to ','
 nmap <leader>O O<Esc>j
 nmap <leader>o o<Esc>k
 
-" Buffer movement with listing
-nnoremap <leader>n :bnext<CR>:ls<CR>
-nnoremap <leader>p :bprevious<CR>:ls<CR>
-
 " Edit vimrc
 nnoremap <leader>rc :vsp ~/.vimrc<CR><C-L>
-
-" Quick silent run through Autoprefixer
-nnoremap <leader>ap :silent !autoprefixer %<CR>:e<CR>
 
 " Ignore arrows
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+
+" Split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Last open file switching
+nnoremap <leader><leader> <C-^>
