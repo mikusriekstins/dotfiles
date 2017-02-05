@@ -1,6 +1,5 @@
 
 " Author: Mikus Riekstins (mikus.riekstins@gmail.com)
-" Last update 2015
 
 " ------------------------------------------------------------
 " Plugins
@@ -10,26 +9,27 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'SirVer/ultisnips'
-Plugin 'itchyny/lightline.vim'
+Plugin 'kien/ctrlp.vim.git'
 Plugin 'tpope/vim-surround'
 Plugin 'mattn/emmet-vim'
+Plugin 'sirver/ultisnips'
+Plugin 'itchyny/lightline.vim'
+
+" Syntax plugins
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-markdown'
 Plugin 'othree/html5.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'editorconfig/editorconfig-vim'
+Plugin 'elzr/vim-json'
+Plugin 'cakebaker/scss-syntax.vim'
 
 call vundle#end()
 
 " CtrlP ignore files and folders
-let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|DS_Store\|git'
+ let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|DS_Store\|git'
 
 " Emmet shortcut remap
-let g:user_emmet_leader_key='<C-Z>'
-
-" Use W3 to validate HTML
-let g:syntastic_html_checkers = ['w3']
+ let g:user_emmet_leader_key='<C-Z>'
 
 " ------------------------------------------------------------
 " General
@@ -60,16 +60,15 @@ set number                      " Line numbers
 set numberwidth=5               " Make space for at least 4
 set laststatus=2                " Always show status line
 set background=dark             " Dark variation of colorscheme
-colorscheme solarized           " Set colorscheme
+colorscheme lucy                 " Set colorscheme
 set splitbelow                  " H-Split to bottom
 set splitright                  " V-Split to right
 set cursorline                  " Highlighted current line
-set guifont=Fira\ Mono:h18      " Font for MacVim
 set linespace=8                 " Set line height
 set rnu                         " Relative line numbers
 set cc=80                       " Color column 80
 set list                        " Show hidden characters
-set listchars=trail:•           " Set hidden characters
+set listchars=trail:~           " Set hidden characters
 
 " ------------------------------------------------------------
 " Formating
@@ -88,13 +87,8 @@ set autoindent                  " Enable autoindent
 " Mappings
 " ------------------------------------------------------------
 
-" Simpler split navigation
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-L> <C-W><C-L>
-" nnoremap <C-H> <C-W><C-H>
-
-let mapleader=","               " Change the leader to ','
+" Change leader to ','
+let mapleader=","
 
 " New line without Insert mode Enter/Shift+Enter
 nmap <leader>O O<Esc>j
@@ -102,6 +96,9 @@ nmap <leader>o o<Esc>k
 
 " Edit vimrc
 nnoremap <leader>rc :vsp ~/.vimrc<CR><C-L>
+
+" Edit colorscheme
+nnoremap <leader>cs :vsp ~/.vim/colors/lucy.vim<CR><C-L>
 
 " Ignore arrows
 noremap <Up> <Nop>
@@ -114,6 +111,3 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-" Last open file switching
-nnoremap <leader><leader> <C-^>

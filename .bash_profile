@@ -27,4 +27,4 @@ alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Cres
 . ~/Git/z/z.sh
 
 # Recursively delete `.DS_Store` files
-alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
+alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
