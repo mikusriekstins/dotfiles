@@ -19,7 +19,7 @@ hi Float ctermfg=197
 hi Exception ctermfg=197
 
 " Whites
-hi Normal ctermfg=252 ctermbg=234
+hi Normal ctermfg=252
 hi Comment ctermfg=245 cterm=italic
 hi Question ctermfg=245
 hi CursorLine ctermbg=235 cterm=none
@@ -38,6 +38,7 @@ hi Keyword ctermfg=128
 hi Statement ctermfg=128 cterm=none
 hi Define ctermfg=128 cterm=bold
 hi Label ctermfg=128
+hi Special ctermfg=128
 
 " Orange
 hi ModeMsg ctermfg=202 cterm=bold
@@ -56,7 +57,6 @@ hi StorageClass ctermfg=40
 
 " Blue
 hi Tag ctermfg=45
-hi Special ctermfg=45
 hi Typedef ctermfg=45
 hi PreProc ctermfg=45 cterm=italic
 hi Title ctermfg=45
