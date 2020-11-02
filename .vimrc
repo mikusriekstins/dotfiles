@@ -11,13 +11,10 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim.git'
 Plugin 'tpope/vim-surround'
-Plugin 'mattn/emmet-vim'
-Plugin 'sirver/ultisnips'
 Plugin 'itchyny/lightline.vim'
 
 " Syntax plugins
 Plugin 'pangloss/vim-javascript'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-markdown'
 Plugin 'othree/html5.vim'
 Plugin 'elzr/vim-json'

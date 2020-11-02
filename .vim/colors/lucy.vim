@@ -28,17 +28,17 @@ hi ColorColumn ctermbg=235
 hi Character ctermfg=15
 
 " Pink
-hi Function ctermfg=128
-hi Conditional ctermfg=128
-hi Identifier ctermfg=128 cterm=none
-hi Operator ctermfg=128
-hi NonText ctermfg=128
-hi Directory ctermfg=128 cterm=none
-hi Keyword ctermfg=128
-hi Statement ctermfg=128 cterm=none
-hi Define ctermfg=128 cterm=bold
-hi Label ctermfg=128
-hi Special ctermfg=128
+hi Function ctermfg=199
+hi Conditional ctermfg=199
+hi Identifier ctermfg=199 cterm=none
+hi Operator ctermfg=199
+hi NonText ctermfg=199
+hi Directory ctermfg=199 cterm=none
+hi Keyword ctermfg=199
+hi Statement ctermfg=199 cterm=none
+hi Define ctermfg=199 cterm=bold
+hi Label ctermfg=199
+hi Special ctermfg=199
 
 " Orange
 hi ModeMsg ctermfg=202 cterm=bold
