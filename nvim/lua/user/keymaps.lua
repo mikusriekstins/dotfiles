@@ -56,13 +56,12 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
-
 -- Terminal --
 keymap("t", "<Esc>", "<C-\\><C-n>", term_opts)
 
 -- Harpoon --
-keymap("n", "<leader>h", ":lua require('harpoon.mark').add_file()<CR>", opts)
-keymap("n", "<leader>hl", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
+keymap("n", "<leader>m", ":lua require('harpoon.mark').add_file()<CR>", opts)
+keymap("n", "<C-q>", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
 keymap("n", "<F1>", ":lua require('harpoon.ui').nav_file(1)<CR>", opts)
 keymap("n", "<F2>", ":lua require('harpoon.ui').nav_file(2)<CR>", opts)
 keymap("n", "<F3>", ":lua require('harpoon.ui').nav_file(3)<CR>", opts)

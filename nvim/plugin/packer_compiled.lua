@@ -74,15 +74,15 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  LuaSnip = {
-    loaded = true,
-    path = "C:\\Users\\Juno\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\LuaSnip",
-    url = "https://github.com/L3MON4D3/LuaSnip"
-  },
   ["alpha-nvim"] = {
     loaded = true,
     path = "C:\\Users\\Juno\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
+  },
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\Juno\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
@@ -109,11 +109,6 @@ _G.packer_plugins = {
     path = "C:\\Users\\Juno\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  ["friendly-snippets"] = {
-    loaded = true,
-    path = "C:\\Users\\Juno\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\friendly-snippets",
-    url = "https://github.com/rafamadriz/friendly-snippets"
-  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "C:\\Users\\Juno\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\gitsigns.nvim",
@@ -133,11 +128,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\Juno\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
-  },
-  ["jellybeans.vim"] = {
-    loaded = true,
-    path = "C:\\Users\\Juno\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\jellybeans.vim",
-    url = "https://github.com/nanotech/jellybeans.vim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -199,10 +189,25 @@ _G.packer_plugins = {
     path = "C:\\Users\\Juno\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["project.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\Juno\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\project.nvim",
+    url = "https://github.com/ahmedkhalf/project.nvim"
+  },
+  ["rose-pine"] = {
+    loaded = true,
+    path = "C:\\Users\\Juno\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\rose-pine",
+    url = "https://github.com/rose-pine/neovim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "C:\\Users\\Juno\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["vim-bbye"] = {
+    loaded = true,
+    path = "C:\\Users\\Juno\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-bbye",
+    url = "https://github.com/moll/vim-bbye"
   },
   ["vim-fugitive"] = {
     loaded = true,
