@@ -52,6 +52,7 @@ return packer.startup(function(use)
   use { "folke/which-key.nvim" }
   use { "ryanoasis/vim-devicons" }
   use { "tpope/vim-surround" }
+  use { 'christoomey/vim-tmux-navigator' }
 
   -- Colorschemes
   use { 'rose-pine/neovim', as = 'rose-pine' }
