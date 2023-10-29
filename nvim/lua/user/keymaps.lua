@@ -19,7 +19,7 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Open nvim configs
-keymap("n", "<leader>rc", ":e ~/AppData/Local/nvim<CR>", opts)
+keymap("n", "<leader>rc", ":e ~/.config/nvim/lua/user/<CR>", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)

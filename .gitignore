@@ -1,0 +1,11 @@
+
+nvim/mason/bin
+nvim/mason/packages/haskell-language-server/bin
+nvim/mason/packages/haskell-language-server/lib
+nvim/mason
+nvim/site
+nvim/telescope_history
+nvim/undo
+nvim/project_nvim
+nvim/rplugin.vim
+nvim/shada

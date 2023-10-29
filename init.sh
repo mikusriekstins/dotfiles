@@ -1,11 +1,11 @@
 
 ########## Variables
 
-dir=~/dotfiles                    # dotfiles directory
+dir=~/git/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir
-files="bashrc bash_prompt bash_profile vim vimrc"
+files="bashrc bash_prompt bash_profile vim vimrc tmux.conf"
 
 ##########
 
