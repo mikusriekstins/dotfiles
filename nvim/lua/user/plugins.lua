@@ -50,10 +50,12 @@ return packer.startup(function(use)
   use { "lukas-reineke/indent-blankline.nvim" }
   use { "goolord/alpha-nvim" }
   use { "folke/which-key.nvim" }
+  use { "ryanoasis/vim-devicons" }
   use { "tpope/vim-surround" }
 
   -- Colorschemes
   use { 'rose-pine/neovim', as = 'rose-pine' }
+  use { 'nyoom-engineering/nyoom.nvim' }
 
   -- Cmp 
   use { "hrsh7th/nvim-cmp" } -- The completion plugin

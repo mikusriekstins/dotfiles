@@ -164,6 +164,11 @@ _G.packer_plugins = {
     path = "/home/mikus/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nyoom.nvim"] = {
+    loaded = true,
+    path = "/home/mikus/.local/share/nvim/site/pack/packer/start/nyoom.nvim",
+    url = "https://github.com/nyoom-engineering/nyoom.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/mikus/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -193,6 +198,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mikus/.local/share/nvim/site/pack/packer/start/vim-bbye",
     url = "https://github.com/moll/vim-bbye"
+  },
+  ["vim-devicons"] = {
+    loaded = true,
+    path = "/home/mikus/.local/share/nvim/site/pack/packer/start/vim-devicons",
+    url = "https://github.com/ryanoasis/vim-devicons"
   },
   ["vim-fugitive"] = {
     loaded = true,

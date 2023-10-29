@@ -31,10 +31,10 @@ local options = {
   linebreak = true,                        -- companion to wrap, don't split words
   scrolloff = 8,                           -- minimal number of screen lines to keep above and below the cursor
   sidescrolloff = 8,                       -- minimal number of screen columns either side of cursor if wrap is `false`
-  guifont = "IBM Plex Mono:h11",               -- the font used in graphical neovim applications
+  --guifont = "IBM Plex Mono:h12",               -- the font used in graphical neovim applications
   wrap = false,
   textwidth = 0,
-  shell = "powershell",
+  shell = "bash",
 }
 
 for k, v in pairs(options) do
