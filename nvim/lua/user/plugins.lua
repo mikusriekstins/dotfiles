@@ -84,6 +84,9 @@ return packer.startup(function(use)
   -- Illuminate cursor words
   use { "RRethy/vim-illuminate" }
 
+  -- Rust
+  use { "rust-lang/rust.vim" }
+
   -- Git
   use { "lewis6991/gitsigns.nvim" }
   use { "tpope/vim-fugitive" }
