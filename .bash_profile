@@ -43,3 +43,29 @@ export LIBCLANG_PATH="/home/mikus/.rustup/toolchains/esp/xtensa-esp32-elf-clang/
 export PATH="/home/mikus/.rustup/toolchains/esp/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin:$PATH"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# Toolbox alias commands
+alias cargo-run="toolbox run cargo build && cargo run"
+alias cargo-build="toolbox run cargo build"
+
+# Brew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Zoxide z jumping
+eval "$(zoxide init bash)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/var/home/orion/.lmstudio/bin"
+
+# Uzspelejam tmux sessions
+alias ai-dev="bash ~/git/start-tmux.sh"
+
+# Update claude
+alias update-claude="sudo npm install -g @anthropic-ai/claude-code"
+
+# Run D
+alias dev-elder="z elderfall && tmux new -s elderfall"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
