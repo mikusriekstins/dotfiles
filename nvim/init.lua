@@ -87,6 +87,31 @@ require('lazy').setup({
     lazy = false,
   },
 
+  { -- Smart commenting plugin
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup({
+        -- Disable default keymaps since we want custom ones
+        mappings = {
+          basic = false,
+          extra = false,
+        },
+      })
+
+      local api = require('Comment.api')
+      -- Add custom keymaps for <leader>c using the API
+      vim.keymap.set('n', '<leader>c', function()
+        api.toggle.linewise.current()
+      end, { desc = '[C]omment toggle current line' })
+
+      vim.keymap.set('v', '<leader>c', function()
+        local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
+        vim.api.nvim_feedkeys(esc, 'nx', false)
+        api.toggle.linewise(vim.fn.visualmode())
+      end, { desc = '[C]omment toggle selection' })
+    end,
+  },
+
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -123,6 +148,9 @@ require('lazy').setup({
         -- AI Code Generation
         { '<leader>g', desc = '[G]enerate code with InlineCoder', mode = 'v' },
 
+        -- Commenting
+        { '<leader>c', desc = '[C]omment toggle', mode = { 'n', 'v' } },
+
         -- Groups
         { '<leader>s', group = '[S]earch',   mode = { 'n', 'v' } },
         { '<leader>t', group = '[T]oggle' },
@@ -137,7 +165,7 @@ require('lazy').setup({
         { 'grn', desc = '[R]e[n]ame' },
         { 'ga', desc = '[G]oto Code [A]ction' },
         { 'grD', desc = '[G]oto [D]eclaration' },
-        { '<leader>d', desc = 'Hover Documentation' },
+        { '<leader>k', desc = 'Hover Documentation' },
       },
     },
   },
@@ -245,7 +273,7 @@ require('lazy').setup({
             mode = mode or 'n'
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
-          map('<leader>d', vim.lsp.buf.hover, 'Hover Documentation')
+          map('<leader>k', vim.lsp.buf.hover, 'Hover Documentation')
           map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
           map('ga', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
           map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
