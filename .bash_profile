@@ -14,8 +14,8 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # Set UTF8
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+export LANG=C.UTF-8
+export LC_ALL=C.UTF-8
 
 # Pico SDK
 export PICO_SDK_PATH=~/git/pico-sdk
@@ -65,6 +65,66 @@ alias update-claude="sudo npm install -g @anthropic-ai/claude-code"
 
 # Run D
 alias dev-elder="z elderfall && tmux new -s elderfall"
+
+# Work
+tmux-project() {
+    local project_dir="$1"
+    local server_dir="$2"
+    local session="$3"
+    local win0="${4:-nvim}"
+
+    # Validate required arguments
+    if [[ -z "$project_dir" || -z "$server_dir" || -z "$session" ]]; then
+        echo "Usage: tmux-project <project_dir> <server_dir> <session_name> [window_name]" >&2
+        return 1
+    fi
+
+    # Ensure project_dir and server_dir exist
+    if [[ ! -d "$project_dir" ]]; then
+        echo "Error: project_dir does not exist: $project_dir" >&2
+        return 1
+    fi
+    if [[ ! -d "$server_dir" ]]; then
+        echo "Error: server_dir does not exist: $server_dir" >&2
+        return 1
+    fi
+
+    if ! tmux has-session -t "$session" 2>/dev/null; then
+        tmux new-session -s "$session" -c "$project_dir" -n "$win0" \; \
+            send-keys "nvim ." Enter \; \
+            new-window -t "$session" -n "server" -c "$server_dir" \; \
+            send-keys "dotnet run" Enter \; \
+            select-window -t "$session:$win0"
+    else
+        tmux attach-session -t "$session"
+    fi
+}
+
+tmux-enquiry() {
+    tmux-project \
+        "$HOME/enquiry-frontend/src/Enquiry.Bff/ClientApp" \
+        "$HOME/enquiry-frontend/src/Enquiry.Bff" \
+        "Enquiry"
+}
+
+tmux-sv() {
+    tmux-project \
+        "$HOME/standards-viewer-frontend/src/StandardsViewerFrontend.Client" \
+        "$HOME/standards-viewer-frontend/src/StandardsViewerFrontend.Server" \          # adjust: e.g. "$HOME/vs-project/src/Vs.Web"
+        "Viewer"
+}
+
+enquiry() { tmux-enquiry "$@"; }
+sv()      { tmux-sv      "$@"; }
+
+dev() {
+    case "${1:-}" in
+        enq) shift; tmux-enquiry "$@" ;;
+        sv)  shift; tmux-sv      "$@" ;;
+        "")  echo "Usage: dev {enq|sv}" >&2; return 1 ;;
+        *)   echo "Error: Unknown command '$1'. Available: enq, sv" >&2; return 1 ;;
+    esac
+}
 
 # bun
 export BUN_INSTALL="$HOME/.bun"

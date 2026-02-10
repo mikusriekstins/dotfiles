@@ -2,7 +2,7 @@
 
 ########## Variables
 
-dir=~/Development/dotfiles                    # dotfiles directory
+dir=~/dotfiles                    # dotfiles directory
 olddir=~/old_dotfiles                         # old dotfiles backup directory
 
 # list of dotfiles to symlink in homedir

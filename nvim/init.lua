@@ -2,7 +2,27 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = false
+
+-- WSL clipboard provider using Windows tools
+if vim.fn.has('wsl') == 1 then
+  vim.g.clipboard = {
+    name = 'WslClipboard',
+    copy = {
+      ['+'] = '/mnt/c/Windows/System32/clip.exe',
+      ['*'] = '/mnt/c/Windows/System32/clip.exe',
+    },
+    paste = {
+      ['+'] = '/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -Command Get-Clipboard',
+      ['*'] = '/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -Command Get-Clipboard',
+    },
+    cache_enabled = 0,
+  }
+end
+
+vim.o.termguicolors = true
 vim.o.number = true
+vim.o.relativenumber = true
+vim.o.numberwidth = 5
 vim.o.mouse = 'a'
 vim.o.showmode = false
 vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
@@ -26,6 +46,8 @@ vim.keymap.set('n', '<leader>b', '<C-^>', { desc = '[B]ack to previous buffer' }
 vim.keymap.set('n', '<leader>w', '<cmd>bdelete<CR>', { desc = 'Close current buffer' })
 vim.keymap.set('n', '<leader>rr', '<cmd>edit<CR>', { desc = '[R]eload current buffer' })
 vim.keymap.set('n', '<leader>ra', '<cmd>bufdo edit<CR>', { desc = '[R]eload [A]ll buffers' })
+vim.keymap.set('n', '<leader>rc', function() vim.cmd.edit(vim.fn.stdpath('config') .. '/init.lua') end, { desc = 'Edit [R]C file (init.lua)' })
+vim.keymap.set('n', '<leader>so', function() vim.cmd.source(vim.fn.stdpath('config') .. '/init.lua') end, { desc = '[So]urce init.lua' })
 
 -- Indentation keymaps - override default > and < to indent immediately
 vim.keymap.set('n', '>', '>>', { desc = 'Indent right' })
@@ -35,6 +57,9 @@ vim.keymap.set('v', '<', '<gv', { desc = 'Indent left and reselect' })
 
 -- InlineCoder keymap
 vim.keymap.set('v', '<leader>g', ':InlineCoderGenerate<CR>', { desc = '[G]enerate code with InlineCoder' })
+
+-- Copy to system clipboard in visual mode
+vim.keymap.set('v', 'Y', '"+y', { desc = 'Copy to system clipboard' })
 
 -- Diagnostic Config & Keymaps
 vim.diagnostic.config {
@@ -144,6 +169,8 @@ require('lazy').setup({
         { '<leader>r', group = '[R]eload' },
         { '<leader>rr', desc = '[R]eload current buffer' },
         { '<leader>ra', desc = '[R]eload [A]ll buffers' },
+        { '<leader>rc', desc = 'Edit [R]C file (init.lua)' },
+        { '<leader>so', desc = '[So]urce init.lua' },
 
         -- AI Code Generation
         { '<leader>g', desc = '[G]enerate code with InlineCoder', mode = 'v' },
@@ -454,23 +481,9 @@ require('lazy').setup({
   --   },
   -- },
 
-  {                  -- You can easily change to a different colorscheme.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      }
-
-      -- vim.cmd.colorscheme 'tokyonight-night'
-    end,
-  },
-
   {
-    'nlknguyen/papercolor-theme',
+    'Everblush/nvim',
+    name = 'everblush',
     priority = 1000,
     lazy = false,
   },
@@ -482,7 +495,7 @@ require('lazy').setup({
     },
     config = function()
       require('inlinecoder').setup({
-        api_url = "http://localhost:4040/v1/chat/completions",
+        api_url = "http://bluefin.local:8080/v1/chat/completions",
       })
     end,
   },
@@ -560,6 +573,6 @@ require('lazy').setup({
 
 -- Set colorscheme after plugins are loaded
 vim.schedule(function()
-  vim.cmd.colorscheme('PaperColor')
+  vim.cmd.colorscheme('everblush')
 end)
 
