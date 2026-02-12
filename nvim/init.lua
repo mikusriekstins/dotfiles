@@ -3,22 +3,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = false
 
--- WSL clipboard provider using Windows tools
-if vim.fn.has('wsl') == 1 then
-  vim.g.clipboard = {
-    name = 'WslClipboard',
-    copy = {
-      ['+'] = '/mnt/c/Windows/System32/clip.exe',
-      ['*'] = '/mnt/c/Windows/System32/clip.exe',
-    },
-    paste = {
-      ['+'] = '/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -Command Get-Clipboard',
-      ['*'] = '/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -Command Get-Clipboard',
-    },
-    cache_enabled = 0,
-  }
-end
-
+-- Disable background color query to prevent OSC sequences in tmux
+vim.o.background = 'dark'
 vim.o.termguicolors = true
 vim.o.number = true
 vim.o.relativenumber = true
@@ -73,6 +59,7 @@ vim.diagnostic.config {
 }
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = '[E]xpand diagnostic message' })
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
@@ -164,6 +151,8 @@ require('lazy').setup({
         { '<leader>w', desc = 'Close current buffer' },
         { '<leader>/', desc = 'Search by Grep' },
         { '<leader>.', desc = 'Recent Files' },
+        { '<leader>e', desc = '[E]xpand diagnostic message' },
+        { '<leader>q', desc = 'Open diagnostic [Q]uickfix list' },
 
         -- Reload operations
         { '<leader>r', group = '[R]eload' },
@@ -302,7 +291,7 @@ require('lazy').setup({
           end
           map('<leader>k', vim.lsp.buf.hover, 'Hover Documentation')
           map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
-          map('ga', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+          map('<leader>a', vim.lsp.buf.code_action, 'Code [A]ction', { 'n', 'x' })
           map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -345,12 +334,12 @@ require('lazy').setup({
       end
 
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
         ts_ls = {
           cmd = { 'typescript-language-server', '--stdio' },
+          filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript.jsx' },
+          root_dir = function(fname)
+            return vim.fs.root(fname, { 'package.json', 'tsconfig.json', 'jsconfig.json', '.git' })
+          end,
         },
       }
 
@@ -362,11 +351,21 @@ require('lazy').setup({
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-      -- Setup LSP servers using modern vim.lsp API
+      -- Setup LSP servers with explicit FileType autocmd
       for name, server in pairs(servers) do
         server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-        vim.lsp.config(name, server)
-        vim.lsp.enable(name)
+
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = server.filetypes,
+          callback = function(args)
+            vim.lsp.start({
+              name = name,
+              cmd = server.cmd,
+              root_dir = server.root_dir and server.root_dir(args.file) or vim.fn.getcwd(),
+              capabilities = server.capabilities,
+            })
+          end,
+        })
       end
 
       -- vim.lsp.config('lua_ls', {
