@@ -78,5 +78,18 @@ fi
 echo "Creating symlink to nvim config directory"
 ln -s $dir/nvim ~/.config/nvim
 
+# handle opencode config directory
+echo ""
+echo "Setting up opencode config directory"
+mkdir -p ~/.config
+
+if [ -d ~/.config/opencode ] || [ -L ~/.config/opencode ]; then
+  echo "Moving existing nvim config from ~/.config/opencode to $olddir"
+  mv ~/.config/opencode $olddir/opencode
+fi
+
+echo "Creating symlink to opencode config directory"
+ln -s $dir/opencode ~/.config/opencode
+
 echo ""
 echo "Dotfiles setup complete!"
