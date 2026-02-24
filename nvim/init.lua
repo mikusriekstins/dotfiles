@@ -348,9 +348,15 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        rust_analyzer = {},
+        rust_analyzer = {
+          filetypes = { 'rust' },
+        },
         ts_ls = {
           cmd = { 'typescript-language-server', '--stdio' },
+          filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript.jsx' },
+          root_dir = function(fname)
+            return vim.fs.root(fname, { 'package.json', 'tsconfig.json', 'jsconfig.json', '.git' })
+          end,
         },
       }
 
@@ -363,11 +369,21 @@ require('lazy').setup({
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-      -- Setup LSP servers using modern vim.lsp API
+      -- Setup LSP servers with explicit FileType autocmd
       for name, server in pairs(servers) do
         server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-        vim.lsp.config(name, server)
-        vim.lsp.enable(name)
+
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = server.filetypes,
+          callback = function(args)
+            vim.lsp.start({
+              name = name,
+              cmd = server.cmd,
+              root_dir = server.root_dir and server.root_dir(args.file) or vim.fn.getcwd(),
+              capabilities = server.capabilities,
+            })
+          end,
+        })
       end
 
       -- vim.lsp.config('lua_ls', {
