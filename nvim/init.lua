@@ -349,6 +349,7 @@ require('lazy').setup({
         -- gopls = {},
         -- pyright = {},
         rust_analyzer = {
+          cmd = { 'rust-analyzer' },
           filetypes = { 'rust' },
         },
         ts_ls = {
