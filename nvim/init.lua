@@ -348,7 +348,7 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
+        rust_analyzer = {},
         ts_ls = {
           cmd = { 'typescript-language-server', '--stdio' },
         },
@@ -356,6 +356,7 @@ require('lazy').setup({
 
       local ensure_installed = {
         'lua-language-server',
+        'rust-analyzer',
         'stylua',
         'typescript-language-server',
       }
@@ -542,7 +543,7 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     config = function()
-      local filetypes = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim',
+      local filetypes = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'rust', 'vim',
         'vimdoc', 'typescript', 'tsx', 'javascript', 'json' }
       require('nvim-treesitter').install(filetypes)
       vim.api.nvim_create_autocmd('FileType', {
