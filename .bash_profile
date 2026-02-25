@@ -114,13 +114,22 @@ tmux-sv() {
         "Viewer"
 }
 
+tmux-at() {
+    tmux-project \
+        "$HOME/authoring-frontend-v2/src/Authoring.Bff/ClientApp" \
+        "$HOME/authoring-frontend-v2/src/Authoring.Bff" \
+        "Authoring"
+}
+
 enquiry() { tmux-enquiry "$@"; }
 sv()      { tmux-sv      "$@"; }
+at()      { tmux-at      "$@"; }
 
 dev() {
     case "${1:-}" in
         enq) shift; tmux-enquiry "$@" ;;
         sv)  shift; tmux-sv      "$@" ;;
+        at)  shift; tmux-at      "$@" ;;
         "")  echo "Usage: dev {enq|sv}" >&2; return 1 ;;
         *)   echo "Error: Unknown command '$1'. Available: enq, sv" >&2; return 1 ;;
     esac
