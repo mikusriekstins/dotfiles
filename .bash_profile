@@ -66,74 +66,14 @@ alias update-claude="sudo npm install -g @anthropic-ai/claude-code"
 # Run D
 alias dev-elder="z elderfall && tmux new -s elderfall"
 
-# Work
-tmux-project() {
-    local project_dir="$1"
-    local server_dir="$2"
-    local session="$3"
-    local win0="${4:-nvim}"
+# Tmux project helper
+source ~/dotfiles/tmux-project.sh
 
-    # Validate required arguments
-    if [[ -z "$project_dir" || -z "$server_dir" || -z "$session" ]]; then
-        echo "Usage: tmux-project <project_dir> <server_dir> <session_name> [window_name]" >&2
-        return 1
-    fi
-
-    # Ensure project_dir and server_dir exist
-    if [[ ! -d "$project_dir" ]]; then
-        echo "Error: project_dir does not exist: $project_dir" >&2
-        return 1
-    fi
-    if [[ ! -d "$server_dir" ]]; then
-        echo "Error: server_dir does not exist: $server_dir" >&2
-        return 1
-    fi
-
-    if ! tmux has-session -t "$session" 2>/dev/null; then
-        tmux new-session -s "$session" -c "$project_dir" -n "$win0" \; \
-            send-keys "nvim ." Enter \; \
-            new-window -t "$session" -n "server" -c "$server_dir" \; \
-            send-keys "dotnet run" Enter \; \
-            select-window -t "$session:$win0"
-    else
-        tmux attach-session -t "$session"
-    fi
-}
-
-tmux-enquiry() {
-    tmux-project \
-        "$HOME/enquiry-frontend/src/Enquiry.Bff/ClientApp" \
-        "$HOME/enquiry-frontend/src/Enquiry.Bff" \
-        "Enquiry"
-}
-
-tmux-sv() {
-    tmux-project \
-        "$HOME/standards-viewer-frontend/src/StandardsViewerFrontend.Client" \
-        "$HOME/standards-viewer-frontend/src/StandardsViewerFrontend.Server" \          # adjust: e.g. "$HOME/vs-project/src/Vs.Web"
-        "Viewer"
-}
-
-tmux-at() {
-    tmux-project \
-        "$HOME/authoring-frontend-v2/src/Authoring.Bff/ClientApp" \
-        "$HOME/authoring-frontend-v2/src/Authoring.Bff" \
-        "Authoring"
-}
-
-enquiry() { tmux-enquiry "$@"; }
-sv()      { tmux-sv      "$@"; }
-at()      { tmux-at      "$@"; }
-
-dev() {
-    case "${1:-}" in
-        enq) shift; tmux-enquiry "$@" ;;
-        sv)  shift; tmux-sv      "$@" ;;
-        at)  shift; tmux-at      "$@" ;;
-        "")  echo "Usage: dev {enq|sv}" >&2; return 1 ;;
-        *)   echo "Error: Unknown command '$1'. Available: enq, sv" >&2; return 1 ;;
-    esac
-}
+# App shortcuts
+alias dev-enquiry="dev Enquiry '$HOME/enquiry-frontend/src/Enquiry.Bff/ClientApp' 'nvim .' '$HOME/enquiry-frontend/src/Enquiry.Bff' 'dotnet run'"
+alias dev-sv="dev Viewer '$HOME/standards-viewer-frontend/src/StandardsViewerFrontend.Client' 'nvim .' '$HOME/standards-viewer-frontend/src/StandardsViewerFrontend.Server' 'dotnet run'"
+alias dev-at="dev Authoring '$HOME/authoring-frontend-v2/src/Authoring.Bff/ClientApp' 'nvim .' '$HOME/authoring-frontend-v2/src/Authoring.Bff' 'dotnet run'"
+alias dev-cl="dev CL '$HOME/component-library' 'nvim .' '$HOME/component-library' 'npm run storybook'"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
