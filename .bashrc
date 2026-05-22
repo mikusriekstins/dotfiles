@@ -7,3 +7,5 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="$PATH:/var/home/orion/.lmstudio/bin"
 # End of LM Studio CLI section
 
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$HOME/.dotnet:$PATH

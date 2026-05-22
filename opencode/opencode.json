@@ -5,11 +5,11 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "llama.cpp (local)",
       "options": {
-        "baseURL": "http://192.168.1.121:8080/v1"
+        "baseURL": "http://bluefin.home:8080/v1"
       },
       "models": {
-        "qwen/qwen3-coder-next": {
-          "name": "qwen3-coder-next"
+        "qwen/qwen3.6-35B-A3B": {
+          "name": "Qwen3.6-35B-A3B-Q8_0"
         }
       }
     }
