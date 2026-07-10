@@ -7,6 +7,6 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="$PATH:/var/home/orion/.lmstudio/bin"
 # End of LM Studio CLI section
 
-export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$HOME/.dotnet:$PATH
-export PATH="$HOME/.dotnet:$PATH"
+### bling.sh source start
+test -f /usr/share/ublue-os/bling/bling.sh && source /usr/share/ublue-os/bling/bling.sh
+### bling.sh source end

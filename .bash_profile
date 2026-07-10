@@ -68,18 +68,10 @@ alias ai-dev="bash ~/git/start-tmux.sh"
 # Update claude
 alias update-claude="sudo npm install -g @anthropic-ai/claude-code"
 
-# Run D
-alias dev-elder="z elderfall && tmux new -s elderfall"
-
 # Tmux project helper
-source ~/dotfiles/tmux-project.sh
-
-# App shortcuts
-alias dev-enquiry="dev Enquiry '$HOME/enquiry-frontend/src/Enquiry.Bff/ClientApp' 'nvim .' '$HOME/enquiry-frontend/src/Enquiry.Bff' 'dotnet run'"
-alias dev-sv="dev Viewer '$HOME/standards-viewer-frontend/src/StandardsViewerFrontend.Client' 'nvim .' '$HOME/standards-viewer-frontend/src/StandardsViewerFrontend.Server' 'dotnet run'"
-alias dev-at="dev Authoring '$HOME/authoring-frontend-v2/src/Authoring.Bff/ClientApp' 'nvim .' '$HOME/authoring-frontend-v2/src/Authoring.Bff' 'dotnet run'"
-alias dev-cl="dev CL '$HOME/component-library' 'nvim .' '$HOME/component-library' 'npm run storybook'"
+source ~/Development/dotfiles/tmux-project.sh
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+export DOOMEMACS_INSTALL="$HOME/.config/emacs/bin"
+export PATH="$BUN_INSTALL/bin:$DOOMEMACS_INSTALL:$PATH"
