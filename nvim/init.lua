@@ -240,7 +240,7 @@ vim.api.nvim_create_autocmd('User', {
 group_ts = vim.api.nvim_create_augroup('treesitter_config', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
   group = group_ts,
-  callback = function() vim.treesitter.start() end,
+  callback = function() pcall(vim.treesitter.start) end,
 })
 
 -- Enable treesitter indent

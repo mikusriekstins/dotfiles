@@ -9,3 +9,4 @@ export PATH="$PATH:/var/home/orion/.lmstudio/bin"
 
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$HOME/.dotnet:$PATH
+export PATH="$HOME/.dotnet:$PATH"

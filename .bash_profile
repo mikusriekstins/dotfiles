@@ -1,3 +1,8 @@
+# Source .bashrc for consistent environment across login and non-login shells
+if [ -f "$HOME/.bashrc" ]; then
+    . "$HOME/.bashrc"
+fi
+
 # Source bash prompt from .bash_prompt
 [ -r ~/.bash_prompt ] && source ~/.bash_prompt
 
