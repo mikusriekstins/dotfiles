@@ -1,0 +1,98 @@
+:+TITLE: Minimal Emacs for web dev
+:+AUTHOR: Mikus Riekstins
+:+STARTUP: showeverything
+
+#+begin_src emacs-lisp
+
+
+#+end_src
+
+* Important
+** Packages
+#+begin_src emacs-lisp
+
+  (require 'package)
+
+  (add-to-list 'package-archives
+               '("melpa" . "https://melpa.org/packages/") t)
+
+  (package-initialize)
+
+  (unless package-archive-contents
+    (package-refresh-contents))
+
+  (use-package lsp-mode
+    :ensure t
+    :hook (typescript-mode . lsp)
+    :commands lsp)
+
+  (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode)
+
+  (use-package typescript-mode
+    :ensure t)
+
+  (setq-default typescript-indent-level 2)
+  (setq-default typescript-auto-indent-flag nil)
+
+  (setq org-agenda-files '("~/sd.org"))
+
+  (use-package which-key
+    :ensure t
+    :config
+    (which-key-mode))
+
+
+#+end_src
+
+* Sane Defaults
+#+begin_src emacs-lisp
+
+  (setq make-backup-files nil)
+  (setq auto-save-default nil)
+  (setq create-lockfiles nil)
+  (setq inhibit-startup-screen t)
+
+#+end_src
+* Custom Keybindings
+#+begin_src emacs-lisp
+
+  (global-set-key
+   (kbd "C-c c")
+   (lambda ()
+     (interactive)
+     (find-file "~/.config/emacs/config.org")))
+  
+#+end_src
+* Interface
+#+begin_src emacs-lisp
+
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (load-theme 'tango-dark t)
+  (set-face-attribute 'default nil :font "JetBrains Mono 12")
+  (global-display-line-numbers-mode)
+  (setq display-line-numbers-type 'relative)
+  (setq display-line-numbers-width 4)
+  (setq custom-enabled-themes '(everblush))
+  (setq org-log-done 'time)
+  (setq org-log-start 'time)
+
+#+end_src
+
+* Org Mode
+#+begin_src emacs-lisp
+  (setq org-todo-keywords
+      '((sequence "TODO" "DOING" "|" "DONE" "CANCELLED")))
+
+  (setq org-startup-indented t)
+  
+  (setq org-todo-keyword-faces
+        '(("TODO"      . (:foreground "orange" :weight bold))
+          ("DOING"     . (:foreground "yellow" :weight bold))
+          ("DONE"      . (:foreground "green" :weight bold))
+          ("CANCELLED" . (:foreground "grey" :slant italic))))
+#+end_src
+
+* LSP Settings
