@@ -1,3 +1,8 @@
+# Guard to prevent infinite recursion when .bashrc sources .bash_profile
+# and .bash_profile sources .bashrc. Do NOT export this — it should only
+# protect within a single shell session.
+_BASH_PROFILE_SOURCED=1
+
 # Source .bashrc for consistent environment across login and non-login shells
 if [ -f "$HOME/.bashrc" ]; then
     . "$HOME/.bashrc"
@@ -42,7 +47,8 @@ function gz() {
 }
 
 alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-export PATH="$HOME/.cargo/env:$PATH"
+# ~/.cargo/bin is already in PATH via . "$HOME/.cargo/env" above
+# (do not add $HOME/.cargo/env to PATH — it's a script, not a directory)
 
 export LIBCLANG_PATH="/home/mikus/.rustup/toolchains/esp/xtensa-esp32-elf-clang/esp-16.0.4-20231113/esp-clang/lib"
 export PATH="/home/mikus/.rustup/toolchains/esp/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin:$PATH"
@@ -70,6 +76,23 @@ alias update-claude="sudo npm install -g @anthropic-ai/claude-code"
 
 # Tmux project helper
 source ~/Development/dotfiles/tmux-project.sh
+
+# Llama-server (podman) helpers
+llama-up() {
+  echo "Starting llama-server..."
+  podman start llama-server
+  echo "llama-server is running on http://localhost:8080"
+}
+
+llama-down() {
+  if podman container exists llama-server 2>/dev/null; then
+    echo "Stopping llama-server..."
+    podman stop llama-server
+    echo "llama-server stopped"
+  else
+    echo "llama-server container does not exist"
+  fi
+}
 
 # bun
 export BUN_INSTALL="$HOME/.bun"

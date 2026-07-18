@@ -55,6 +55,13 @@ vim.keymap.set({ 'n', 'v' }, 'P', '"+p', { desc = 'Paste from system clipboard' 
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- Rust build
+vim.keymap.set('n', '<leader>er', function() vim.cmd('rightbelow terminal cargo run') end, { desc = '[E]xecute [R]un' })
+vim.keymap.set('n', '<leader>ec', function() vim.cmd('rightbelow terminal cargo check') end, { desc = '[E]xecute [C]heck' })
+vim.keymap.set('n', '<leader>eb', function() vim.cmd('rightbelow terminal cargo build') end, { desc = '[E]xecute [B]uild' })
+vim.keymap.set('n', '<leader>ef', function() vim.cmd('!cargo fmt') end, { desc = '[E]xecute [F]ormat' })
+vim.keymap.set('n', 'E', function() vim.cmd('wincmd L') end, { desc = 'Move window right' })
+
 -- ─── Diagnostic Config (identical to old config) ────────────
 vim.diagnostic.config {
   update_in_insert = false,
