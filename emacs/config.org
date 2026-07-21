@@ -2,13 +2,7 @@
 :+AUTHOR: Mikus Riekstins
 :+STARTUP: showeverything
 
-#+begin_src emacs-lisp
-
-
-#+end_src
-
-* Important
-** Packages
+* Packages
 #+begin_src emacs-lisp
 
   (require 'package)
@@ -21,32 +15,83 @@
   (unless package-archive-contents
     (package-refresh-contents))
 
+  (use-package vterm
+    :ensure t)
+
   (use-package lsp-mode
     :ensure t
     :hook (typescript-mode . lsp)
-    :commands lsp)
+    :commands lsp
+    :custom
+    ;; what to use when checking on-save. "check" is default, I prefer clippy
+    (lsp-rust-analyzer-cargo-watch-command "clippy")
+    (lsp-eldoc-render-all t)
+    (lsp-idle-delay 0.6)
+    ;; enable / disable the hints as you prefer:
+    ;;(lsp-inlay-hint-enable t)
+    ;; These are optional configurations. See https://emacs-lsp.github.io/lsp-mode/page/lsp-rust-analyzer/#lsp-rust-analyzer-display-chaining-hints for a full list
+    ;; (lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
+    ;; (lsp-rust-analyzer-display-chaining-hints t)
+    ;; (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
+    ;; (lsp-rust-analyzer-display-closure-return-type-hints t)
+    ;; (lsp-rust-analyzer-display-parameter-hints nil)
+    ;; (lsp-rust-analyzer-display-reborrow-hints nil)
+    :config
+    (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
   (use-package lsp-ui
     :ensure t
-    :commands lsp-ui-mode)
+    :commands lsp-ui-mode
+    :custom
+    (lsp-ui-doc-enable nil))
 
   (use-package typescript-mode
     :ensure t)
-
-  (setq-default typescript-indent-level 2)
-  (setq-default typescript-auto-indent-flag nil)
-
-  (setq org-agenda-files '("~/sd.org"))
 
   (use-package which-key
     :ensure t
     :config
     (which-key-mode))
 
+  (use-package vertico
+    :ensure t
+    :init (vertico-mode))
+
+  (use-package marginalia
+    :ensure t
+    :init (marginalia-mode))
+
+  (use-package orderless
+    :ensure t
+    :custom (completion-styles '(orderless basic)))
+
+  (use-package magit
+    :ensure t
+    :bind ("C-x g" . magit-status))
+
+  (use-package rustic
+    :ensure
+    :bind (:map rustic-mode-map
+                ("M-j" . lsp-ui-imenu)
+                ("M-?" . lsp-find-references)
+                ("C-c C-c l" . flycheck-list-errors)
+                ("C-c C-c a" . lsp-execute-code-action)
+                ("C-c C-c r" . lsp-rename)
+                ("C-c C-c q" . lsp-workspace-restart)
+                ("C-c C-c Q" . lsp-workspace-shutdown)
+                ("C-c C-c s" . lsp-rust-analyzer-status)))
+
+  (use-package org-journal
+    :ensure t
+    :custom
+    (org-journal-dir "~/org/journal/")
+    (org-journal-file-format "%Y-%m-%d.org")
+    (org-journal-date-format "%A, %d %B %Y"))
+
 
 #+end_src
 
-* Sane Defaults
+* Defaults
 #+begin_src emacs-lisp
 
   (setq make-backup-files nil)
@@ -55,16 +100,47 @@
   (setq inhibit-startup-screen t)
 
 #+end_src
+
 * Custom Keybindings
 #+begin_src emacs-lisp
 
-  (global-set-key
-   (kbd "C-c c")
-   (lambda ()
-     (interactive)
-     (find-file "~/.config/emacs/config.org")))
-  
+  ;; (global-set-key
+  ;;  (kbd "C-c c")
+  ;;  (lambda ()
+  ;;    (interactive)
+  ;;    (find-file "~/.config/emacs/config.org")))
+
 #+end_src
+
+* Themes
+#+begin_src emacs-lisp
+  (use-package ef-themes
+    :ensure t
+    :init
+    ;; This makes the Modus commands listed below consider only the Ef
+    ;; themes.  For an alternative that includes Modus and all
+    ;; derivative themes (like Ef), enable the
+    ;; `modus-themes-include-derivatives-mode' instead.  The manual of
+    ;; the Ef themes has a section that explains all the possibilities:
+    ;;
+    ;; - Evaluate `(info "(ef-themes) Working with other Modus themes or taking over Modus")'
+    ;; - Visit <https://protesilaos.com/emacs/ef-themes#h:6585235a-5219-4f78-9dd5-6a64d87d1b6e>
+    (ef-themes-take-over-modus-themes-mode 1)
+    :bind
+    (("<f5>" . modus-themes-rotate)
+     ("C-<f5>" . modus-themes-select)
+     ("M-<f5>" . modus-themes-load-random))
+    :config
+    ;; All customisations here.
+    (setq modus-themes-mixed-fonts t)
+    (setq modus-themes-italic-constructs t)
+
+    ;; Finally, load your theme of choice (or a random one with
+    ;; `modus-themes-load-random', `modus-themes-load-random-dark',
+    ;; `modus-themes-load-random-light').
+    (modus-themes-load-theme 'ef-summer))
+#+end_src
+
 * Interface
 #+begin_src emacs-lisp
 
@@ -83,16 +159,82 @@
 
 * Org Mode
 #+begin_src emacs-lisp
-  (setq org-todo-keywords
-      '((sequence "TODO" "DOING" "|" "DONE" "CANCELLED")))
+    (setq org-directory "~/org")
 
-  (setq org-startup-indented t)
-  
-  (setq org-todo-keyword-faces
-        '(("TODO"      . (:foreground "orange" :weight bold))
-          ("DOING"     . (:foreground "yellow" :weight bold))
-          ("DONE"      . (:foreground "green" :weight bold))
-          ("CANCELLED" . (:foreground "grey" :slant italic))))
+    (setq org-agenda-files
+          '("~/org/inbox.org"
+    	"~/org/projects"
+    	"~/org/knowledge"
+    	"~/org/journal"
+    	"~/org/archive"))
+
+    (setq org-todo-keywords
+          '((sequence "TODO(t)" "NEXT(n)" "DOING(i)" "|" "DONE(w@)" "CANCELLED(c@)")))
+
+    (setq org-startup-indented t)
+    (setq org-log-done 'time)
+
+    ;; Refile targets for processing notes
+    (setq org-refile-targets
+          '((org-agenda-files :maxlevel . 3)))
+    (setq org-refile-use-outline-path 'file)
+    (setq org-outline-path-complete-in-steps nil)
+
+    ;; Workflow
+    (setq org-todo-keyword-faces
+          '(("TODO"      . (:foreground "orange" :weight bold))
+            ("NEXT"      . (:foreground "purple" :weight bold))
+    	("DOING"     . (:foreground "yellow" :weight bold))
+            ("DONE"      . (:foreground "green" :weight bold))
+            ("CANCELLED" . (:foreground "grey" :slant italic))))
+
+    ;; Capture template
+    (setq org-capture-templates
+          '(
+
+    	("t" "Task"
+    	 entry
+    	 (file "~/org/inbox.org")
+    	 "* TODO %?\n%U\n")
+
+    	("n" "Note"
+    	 entry
+    	 (file "~/org/inbox.org")
+    	 "* %?\n%U\n")
+    	
+    	("m" "Meeting"
+    	 entry
+    	 (file "~/org/inbox.org")
+    	 "* %?\n%U\n")
+    	))
+
+    (global-set-key (kbd "C-c c") #'org-capture)
+    (global-set-key (kbd "C-c a") #'org-agenda)
+
+    ;; Journaling
+    (global-set-key (kbd "C-c j") #'org-journal-new-entry)
+
+    (setq org-journal-file-header
+        (concat
+         "#+title: "
+         (format-time-string "%A, %d %B %Y")
+         "\n\n"
+         "* Tasks\n\n"
+         "* Meetings\n\n"
+         "* Notes\n\n"))
+  (setq org-journal-date-format "")
+(setq org-journal-time-format "")
+    
+
+  #+end_src
+
+* Rust
+#+begin_src emacs-lisp
+
+  ;; (require 'rust-mode)
+  ;; (add-hook 'rust-mode-hook
+  ;;           (lambda () (setq indent-tabs-mode nil)))
+  ;; (setq rust-format-on-save t)
+  ;; (define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
+  ;; (add-hook 'rust-mode-hook 'cargo-minor-mode)
 #+end_src
-
-* LSP Settings

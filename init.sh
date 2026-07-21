@@ -6,7 +6,7 @@ dir=~/dotfiles                    # dotfiles directory
 olddir=~/old_dotfiles                         # old dotfiles backup directory
 
 # list of dotfiles to symlink in homedir
-dotfiles=".bashrc .bash_prompt .bash_profile .tmux.conf"
+dotfiles=".profile .bashrc .bash_prompt .bash_profile .tmux.conf"
 
 ##########
 

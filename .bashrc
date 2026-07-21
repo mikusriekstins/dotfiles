@@ -1,20 +1,56 @@
-# Source .bash_profile for non-login interactive shells if it hasn't been
-# sourced yet (prevents double-sourcing since .bash_profile also sources .bashrc).
-# The guard variable is set in .bash_profile itself (not exported), so it only
-# protects within the current shell session.
-if [ -z "$_BASH_PROFILE_SOURCED" ] && [ -f "$HOME/.bash_profile" ]; then
-    . "$HOME/.bash_profile"
-    return
+# Interactive bash — aliases, functions, prompt, completions
+
+# Source profile for env vars if not already sourced (covers non-login shells)
+if [ -z "$PROFILE_SOURCED" ] && [ -r ~/.profile ]; then
+    source ~/.profile
+    PROFILE_SOURCED=1
 fi
 
-. "$HOME/.cargo/env"
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/var/home/orion/.lmstudio/bin"
-# End of LM Studio CLI section
-
-### bling.sh source start
+# Bling (eza, bat, ugrep aliases)
 test -f /usr/share/ublue-os/bling/bling.sh && source /usr/share/ublue-os/bling/bling.sh
-### bling.sh source end
+
+# Zoxide
+eval "$(zoxide init bash)"
+
+# Prompt
+[ -r ~/.bash_prompt ] && source ~/.bash_prompt
+
+# Aliases
+alias la="ls -a"
+alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias ai-dev="bash ~/git/start-tmux.sh"
+alias update-claude="sudo npm install -g @anthropic-ai/claude-code"
+alias cargo-run="toolbox run cargo build && cargo run"
+alias cargo-build="toolbox run cargo build"
+
+# Functions
+gz() {
+    echo "orig size    (bytes): "
+    cat "$1" | wc -c
+    echo "gzipped size    (bytes): "
+    gzip -c "$1" | wc -c
+}
+
+llama-up() {
+    echo "Starting llama-server..."
+    podman start llama-server
+    echo "llama-server is running on http://localhost:8080"
+}
+
+llama-down() {
+    if podman container exists llama-server 2>/dev/null; then
+        echo "Stopping llama-server..."
+        podman stop llama-server
+        echo "llama-server stopped"
+    else
+        echo "llama-server container does not exist"
+    fi
+}
+
+# Tmux project helper
+source ~/Development/dotfiles/tmux-project.sh
