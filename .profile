@@ -1,6 +1,12 @@
 # Environment variables — sourced by login shells and PAM
 # (not interactive — no aliases/functions/prompt here)
 
+# Terminal — set 256color TERM for WSL/Windows Terminal when not inside tmux.
+# Tmux overrides this with tmux-256color + Tc (truecolor) in ~/.tmux.conf.
+if [ -z "$TMUX" ]; then
+    export TERM=xterm-256color
+fi
+
 # UTF-8
 export LANG=C.UTF-8
 export LC_ALL=C.UTF-8
@@ -43,3 +49,9 @@ export PATH="$PATH:/var/home/orion/.lmstudio/bin"
 
 # ghcup (Haskell)
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
+
+# App shortcuts
+alias dev-enquiry="dev Enquiry '$HOME/enquiry-frontend/src/Enquiry.Bff/ClientApp' 'nvim .' '$HOME/enquiry-frontend/src/Enquiry.Bff' 'dotnet run'"
+alias dev-sv="dev Viewer '$HOME/standards-viewer-frontend/src/StandardsViewerFrontend.Client' 'nvim .' '$HOME/standards-viewer-frontend/src/StandardsViewerFrontend.Server' 'dotnet run'"
+alias dev-at="dev Authoring '$HOME/authoring-frontend-v2/src/Authoring.Bff/ClientApp' 'nvim .' '$HOME/authoring-frontend-v2/src/Authoring.Bff' 'dotnet run'"
+alias dev-cl="dev CL '$HOME/component-library' 'nvim .' '$HOME/component-library' 'npm run storybook'"

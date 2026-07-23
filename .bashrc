@@ -53,4 +53,5 @@ llama-down() {
 }
 
 # Tmux project helper
-source ~/Development/dotfiles/tmux-project.sh
+source ~/dotfiles/tmux-project.sh
+. "$HOME/.cargo/env"
